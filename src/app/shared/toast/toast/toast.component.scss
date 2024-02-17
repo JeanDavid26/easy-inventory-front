@@ -1,0 +1,34 @@
+:host{
+  .toast {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 10px;
+    animation: slideIn 0.5s, fadeOut 0.5s 2.5s;
+  }
+
+  @keyframes slideIn {
+    from {
+      transform: translateX(100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+
+  @keyframes fadeOut {
+    from {
+      opacity: 1;
+    }
+    to {
+      opacity: 0;
+      display: none;
+    }
+  }
+
+}

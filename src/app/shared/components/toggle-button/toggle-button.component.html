@@ -1,0 +1,11 @@
+<div class="inline-flex rounded-md shadow-sm" role="group">
+
+  <ng-container *ngFor="let button of tButton">
+    <button (click)="value = button.value" type="button" class="px-4 py-2 text-sm font-medium first:rounded-s-lg last:rounded-e-lg text-gray-300 bg-white border border-gray-200 hover:bg-gray-100 hover:text-blue-700 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:text-white dark:hover:bg-gray-600"
+    [ngClass]="{'z-10 ring-2 ring-blue-700 text-blue-700 dark:ring-blue-500 dark:text-white': value === button.value}">
+      {{button.label}}
+    </button>
+  </ng-container>
+
+
+</div>

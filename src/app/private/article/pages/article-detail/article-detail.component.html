@@ -1,0 +1,30 @@
+<div class="flex flex-col grow p-10 gap-5">
+  <div class="flex justify-end gap-5">
+    <app-button *ngIf="id" (click)="softDelete()">Supprimer</app-button>
+    <app-button *ngIf="!id" (click)="enregistrer()">Ajouter</app-button>
+    <app-button *ngIf="id" (click)="enregistrer()">Enregister</app-button>
+
+  </div>
+  <form class="flex flex-col gap-3 grow-0" [formGroup]="form" *ngIf="form">
+    <div class="w-1/4" appInputError>
+      <label for="category" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Catégorie</label>
+      <select id="category" formControlName="categoryId" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+        <option [value]="category.id" *ngFor="let category of tCategory">{{category.label}}</option>
+      </select>
+    </div>
+    <div class="w-1/4" appInputError>
+      <label for="désignation" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Désignation</label>
+      <input type="text" id="désignation" formControlName="label" class="input bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+      <div class="text-sm text-red-500" ></div>
+    </div>
+    <div class="w-1/4" appInputError>
+      <label for="codereference" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Code de référence</label>
+      <input type="text" id="codereference" formControlName="referenceCode" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+    </div>
+    <div class="w-1/12" appInputError>
+      <label for="prixunitaire" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Prix unitaire</label>
+      <input type="number" id="prixunitaire" formControlName="unitPrice" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+    </div>
+  </form>
+
+</div>

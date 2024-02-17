@@ -1,0 +1,13 @@
+:host{
+  .nav-bar{
+    height: 60px;
+  }
+
+  .breadcrumb{
+    height : 40px;
+  }
+
+  .content{
+    height: calc(100vh - 100px);
+  }
+}

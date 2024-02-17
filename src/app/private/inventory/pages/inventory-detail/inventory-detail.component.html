@@ -1,0 +1,54 @@
+<ng-container *ngIf="id">
+  <button data-drawer-target="default-sidebar" data-drawer-toggle="default-sidebar" aria-controls="default-sidebar" type="button" class="inline-flex items-center p-2 mt-2 ms-3 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600">
+    <span class="sr-only">Open sidebar</span>
+    <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+    <path clip-rule="evenodd" fill-rule="evenodd" d="M2 4.75A.75.75 0 012.75 4h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 4.75zm0 10.5a.75.75 0 01.75-.75h7.5a.75.75 0 010 1.5h-7.5a.75.75 0 01-.75-.75zM2 10a.75.75 0 01.75-.75h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 10z"></path>
+    </svg>
+  </button>
+  <div class="flex flex-row w-full h-full flex-grow bg-slate-900">
+    <aside id="default-sidebar" class="relative left-0 bottom-0 h-full z-40 w-64  overflow-hidden transition-transform -translate-x-full sm:translate-x-0" aria-label="Sidebar">
+      <div class="h-full px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-800">
+         <ul class="space-y-2 font-medium">
+            <li>
+               <a routerLink="content" class="flex items-center p-2 text-gray-900 rounded-lg border-l-blue-700 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                  <span class="ms-3">Stock</span>
+               </a>
+            </li>
+            <li>
+               <a routerLink="transaction" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                  <span class="flex-1 ms-3 whitespace-nowrap">Transaction</span>
+               </a>
+            </li>
+         </ul>
+      </div>
+    </aside>
+
+    <div class="p-4 w-full overflow-y-auto">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+
+</ng-container>
+
+<ng-container *ngIf="!id">
+  <div class="flex flex-col grow p-10 gap-5">
+    <div class="flex justify-end">
+      <app-button *ngIf="!id" (click)="enregistrer()">Ajouter</app-button>
+
+    </div>
+    <form class="flex flex-col gap-3 grow-0" [formGroup]="form" *ngIf="form">
+
+      <div class="w-1/4">
+        <label for="désignation" class="w-1/4 block mb-2 text-sm font-medium text-gray-900 dark:text-white">Désignation</label>
+        <input type="text" id="désignation" formControlName="label" class="w-1/4 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+      </div>
+      <div class="w-1/4">
+        <label for="type" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Type de stock</label>
+        <select id="type" formControlName="type" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+          <option [value]="inventoryEnumType.ACHATFERME">Achat ferme</option>
+          <option [value]="inventoryEnumType.DEPOT">Dépôt</option>
+        </select>
+      </div>
+    </form>
+  </div>
+</ng-container>

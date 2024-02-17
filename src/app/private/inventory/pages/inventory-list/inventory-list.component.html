@@ -1,0 +1,47 @@
+<div class="flex flex-col grow p-10">
+  <div class="flex py-3 justify-end">
+    <app-button (click)="goToInventoryDetail(0)">Ajouter un stock</app-button>
+  </div>
+  <div class="relative overflow-x-auto sm:rounded-lg ">
+    <table class=" w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+            <tr>
+                <th scope="col" class="px-6 py-3">
+                    Désignation
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Nombre d'article stocké
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Valeur du stock
+              </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr (click)="goToInventoryDetail(inventory.id)" *ngFor="let inventory of tInventory"
+            class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700 even:hover:bg-gray-500 dark:hover:bg-gray-500 cursor-pointer">
+                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                    {{inventory.label}}
+                </th>
+                <td class="px-6 py-4">
+                  {{inventory.quantity}}
+                </td>
+                <td class="px-6 py-4">
+                  {{inventory.value}}€
+                </td>
+            </tr>
+            <ng-container *ngIf="tInventory.length === 0">
+              <tr
+              class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
+                  <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                      Pas de stock enregistrer
+                  </th>
+                  <td></td>
+              </tr>
+            </ng-container>
+        </tbody>
+    </table>
+  </div>
+</div>
+
+

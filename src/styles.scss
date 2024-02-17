@@ -1,1 +1,16 @@
 /* You can add global styles to this file, and also import other style files */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+body {
+    height: 100%;
+}
+
+.error{
+    font-size: 0.675rem/* 14px */;
+    line-height: 1.25rem/* 20px */;
+    --tw-text-opacity: 1;
+    color: rgb(239 68 68 / var(--tw-text-opacity));
+}
