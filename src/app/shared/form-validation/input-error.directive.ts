@@ -30,8 +30,8 @@ export class InputErrorDirective implements OnInit {
 
   private _getInputLabel(){
     const divEl = this.el.nativeElement
-    if(divEl.querySelector('input')){
-      this.inputLabel = divEl.querySelector('input').getAttribute('formControlName')
+    if(divEl){
+      this.inputLabel = divEl.getAttribute('formControlName')
     }
     if(divEl.querySelector('select')){
       this.inputLabel = divEl.querySelector('select').getAttribute('formControlName')

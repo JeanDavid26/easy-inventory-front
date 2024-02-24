@@ -58,8 +58,6 @@ export class DatePickerComponent implements ControlValueAccessor {
   }
 
   setValue(event : any) : void {
-    console.log(event)
-    console.log('ici', this.datePicker.form)
     this.value = this.datePicker.valueAsDate
   }
 }

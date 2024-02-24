@@ -38,10 +38,8 @@
     </div>
     <form class="flex flex-col gap-3 grow-0" [formGroup]="form" *ngIf="form">
 
-      <div class="w-1/4">
-        <label for="désignation" class="w-1/4 block mb-2 text-sm font-medium text-gray-900 dark:text-white">Désignation</label>
-        <input type="text" id="désignation" formControlName="label" class="w-1/4 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
-      </div>
+      <app-input label="Désignation" formControlName="label"></app-input>
+
       <div class="w-1/4">
         <label for="type" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Type de stock</label>
         <select id="type" formControlName="type" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">

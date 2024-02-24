@@ -9,6 +9,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { DatePickerComponent } from './components/date-picker/date-picker.component';
 import { ToastComponent } from './toast/toast/toast.component';
 import { InputErrorDirective } from './form-validation/input-error.directive';
+import { InputComponent } from './components/input/input.component';
 
 
 
@@ -19,7 +20,8 @@ import { InputErrorDirective } from './form-validation/input-error.directive';
     ToggleButtonComponent,
     DatePickerComponent,
     ToastComponent,
-    InputErrorDirective
+    InputErrorDirective,
+    InputComponent
   ],
   imports: [
     CommonModule,
@@ -36,7 +38,8 @@ import { InputErrorDirective } from './form-validation/input-error.directive';
     FontAwesomeModule,
     DatePickerComponent,
     ToastComponent,
-    InputErrorDirective
+    InputErrorDirective,
+    InputComponent
   ]
 })
 export class SharedModule { }

@@ -27,6 +27,8 @@ export class InventoryDetailComponent {
     this._inventoryService.inventory.subscribe((inventory)=>{
       if(inventory){
         this.id = inventory.id
+      } else {
+        this.id = 0
       }
       this._bcService.setBreadCrumb([
         {
@@ -38,6 +40,7 @@ export class InventoryDetailComponent {
           link : `inventory/${this.id}`
         },
       ])
+      this.initForm()
     })
 
 

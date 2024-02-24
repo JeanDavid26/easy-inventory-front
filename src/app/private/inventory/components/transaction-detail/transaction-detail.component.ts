@@ -23,6 +23,7 @@ export class TransactionDetailComponent {
   public transaction : Transaction = null
   public form : FormGroup
   public tArticle : Article[] = []
+  public tArticleSelectable : Article[] = []
   faPlus = faPlus
   faTrash = faTrash
   public tButtonTransactionType : ToggleButton[] = [
@@ -69,21 +70,32 @@ export class TransactionDetailComponent {
   addArticleQuantity () : void {
     const formArticleQuantity = this._fb.group({
       articleId : null,
-      quantity : null
+      quantity : 0,
+      max : null,
+      min : 0
+    })
+    formArticleQuantity.get('articleId').valueChanges.subscribe((articleId)=> {
+      if(this.form.get('type').value === TransactionTypeEnum.VENTE){
+        const articleQuantity = this.inventory.tArticleQuantity.find((obj) => obj.articleId === Number(articleId))
+        formArticleQuantity.get('max').setValue(articleQuantity.quantity)
+      } else {
+        formArticleQuantity.get('max').setValue(null)
+      }
     })
     this.tArticleQuantity().push(formArticleQuantity)
   }
 
   deleteArticleQuantity (index : number) : void {
-
     this.tArticleQuantity().removeAt(index)
   }
 
   public async initForm() {
     this.tArticle = await this._articleService.list()
+    this.tArticleSelectable = this.tArticle
     this.id = Number(this._activatedRouteSnapshot.snapshot.params['idTransaction'])
     if(this.id){
       this.transaction = await this._transactionService.get(this.id)
+      this.sortTArticle(this.transaction.type)
     }
 
     this.form = this._fb.group({
@@ -91,6 +103,23 @@ export class TransactionDetailComponent {
       date : [this.transaction?.date, Validators.required],
       type : [ this.transaction? this.transaction.type : TransactionTypeEnum.IMPORT, Validators.required],
       tArticleQuantity : this._fb.array([])
+    })
+
+    this.form.get('type').valueChanges.subscribe((type)=> {
+      this.sortTArticle(type)
+    })
+  }
+
+  public sortTArticle(type : TransactionTypeEnum) : void {
+    this.tArticleSelectable = this.tArticle.filter((article)=>{
+      if(type === TransactionTypeEnum.VENTE){
+        const articleQuantity = this.inventory.tArticleQuantity.find(obj => obj.articleId === article.id)
+        if(articleQuantity){
+          return true
+        }
+        return false
+      }
+      return true
     })
   }
 

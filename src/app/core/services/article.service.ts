@@ -29,7 +29,6 @@ export class ArticleService {
   }
 
   public update (id:number, data : Article) : Promise<Article> {
-    console.log(data)
     const route = environment.urlApi + `article/${id}`
     return lastValueFrom(this._httpClient.put<Article>(route, data))
   }

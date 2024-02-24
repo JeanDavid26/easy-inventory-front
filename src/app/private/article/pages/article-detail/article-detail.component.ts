@@ -53,7 +53,7 @@ export class ArticleDetailComponent {
       referenceCode : [ this.article?.referenceCode, Validators.required],
       categoryId : [ this.article?.categoryId, Validators.required],
       unitPrice : [ this.article?.unitPrice, Validators.required],
-
+      barCode : this.article?.barCode
     })
   }
 

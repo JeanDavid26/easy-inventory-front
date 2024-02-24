@@ -14,13 +14,10 @@ export class ValidateFormService {
   ) { }
 
   public handleFormValidationError(error : HttpErrorResponse) : void {
-    console.log(error)
     if(error.error && error.error.response){
       const tFormError : FormError[] = []
       error.error.response.forEach((err : any)=> {
-        console.log('err', err)
         const formError = this._transformHttpErrorToFormError(err)
-        console.log('formError',formError)
         tFormError.push( formError)
       })
       this.error$.emit(tFormError)
