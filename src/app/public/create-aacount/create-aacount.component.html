@@ -1,1 +1,26 @@
-<p>create-aacount works!</p>
+<section class="bg-gray-50 dark:bg-gray-900">
+  <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
+      <a href="#" class="flex items-center mb-6 text-2xl font-semibold text-gray-900 dark:text-white">
+          EASY INVENTORY
+      </a>
+      <div class="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
+          <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
+              <h1 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
+                  Connectez-vous
+              </h1>
+              <form class="flex flex-col gap-4" [formGroup]="form">
+                  <app-input label="Email" formControlName="email" [required]="true"></app-input>
+                  <app-input label="Mot de passe" formControlName="password" [required]="true"></app-input>
+                  <app-input label="Prénom" formControlName="firstName" [required]="true"></app-input>
+                  <app-input label="Nom" formControlName="lastName" [required]="true"></app-input>
+                  <div class="flex justify-center">
+                    <app-button (click)="signUp()">Se connecter</app-button>
+                  </div>
+                  <p class="text-sm font-light text-gray-500 dark:text-gray-400">
+                      Vous avez déjà un compte ? <a routerLink="/public/login" class="font-medium text-primary-600 hover:underline dark:text-primary-500">Se connecter</a>
+                  </p>
+              </form>
+          </div>
+      </div>
+  </div>
+</section>

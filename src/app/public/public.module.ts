@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { LoginComponent } from './login/login.component';
 import { CreateAacountComponent } from './create-aacount/create-aacount.component';
 import { PublicRoutingModule } from './public-routing.module';
+import { SharedModule } from '../shared/shared.module';
 
 
 
@@ -13,7 +14,8 @@ import { PublicRoutingModule } from './public-routing.module';
   ],
   imports: [
     CommonModule,
-    PublicRoutingModule
+    PublicRoutingModule,
+    SharedModule
   ]
 })
 export class PublicModule { }
