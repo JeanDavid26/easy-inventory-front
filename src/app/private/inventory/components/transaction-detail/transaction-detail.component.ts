@@ -11,6 +11,7 @@ import { faPlus, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { BreadcrumbService } from '../../../../core/services/breadcrumb.service';
 import { Article } from '../../../../@models/entities/Article.interface';
 import { ArticleService } from '../../../../core/services/article.service';
+import { debounceTime } from 'rxjs';
 
 @Component({
   selector: 'app-transaction-detail',
@@ -74,12 +75,19 @@ export class TransactionDetailComponent {
       max : null,
       min : 0
     })
-    formArticleQuantity.get('articleId').valueChanges.subscribe((articleId)=> {
+
+    formArticleQuantity.get('quantity').valueChanges
+    .pipe(debounceTime(300))
+    .subscribe((quantity)=> {
+      if(quantity < 0){
+        formArticleQuantity.get('quantity').setValue(0, { emitEvent : false})
+      }
       if(this.form.get('type').value === TransactionTypeEnum.VENTE){
+        const articleId = formArticleQuantity.get('articleId').value
         const articleQuantity = this.inventory.tArticleQuantity.find((obj) => obj.articleId === Number(articleId))
-        formArticleQuantity.get('max').setValue(articleQuantity.quantity)
-      } else {
-        formArticleQuantity.get('max').setValue(null)
+        if(quantity > articleQuantity.quantity){
+          formArticleQuantity.get('quantity').setValue(articleQuantity.quantity, { emitEvent : false})
+        }
       }
     })
     this.tArticleQuantity().push(formArticleQuantity)

@@ -20,10 +20,7 @@
               </select>
             </div>
 
-            <app-input class="w-1/4" type="number" label="Quantité" formControlName="quantity" [numberOptions]="{
-              min : tArticleQuantity().at(i).get('min').value,
-              max :  tArticleQuantity().at(i).get('max').value
-            }"></app-input>
+            <app-input class="w-1/4" type="number" label="Quantité" formControlName="quantity"></app-input>
           </div>
 
           <div class="inline-flex flex-col  content-center">

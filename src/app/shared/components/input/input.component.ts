@@ -18,10 +18,7 @@ export class InputComponent implements ControlValueAccessor, OnInit {
   @Input() type : 'text' | 'number' = 'text'
   @Input() label : string = ''
   @Input() required  : boolean = false
-  @Input() numberOptions : {
-    min? : number
-    max? : number
-  }
+
   // Actual value of the form control
   value: string | number = '';
 
@@ -48,26 +45,9 @@ export class InputComponent implements ControlValueAccessor, OnInit {
   }
 
   updateValue(val: string | null) {
-    if (this.type === "number" && this.numberOptions) {
-      if (val !== null && val !== undefined) {
-        const numVal = Number(val);
-        if (!isNaN(numVal)) {
-          val = this.handleNumberOptions(numVal).toString();
-        }
-      }
-    }
     this.writeValue(val);
     this.onChange(val);
     this.onTouched();
   }
 
-  handleNumberOptions(val: number): number {
-    if (this.numberOptions.min !== undefined && val < this.numberOptions.min) {
-      return this.numberOptions.min;
-    }
-    if (this.numberOptions.max !== undefined && val > this.numberOptions.max) {
-      return this.numberOptions.max;
-    }
-    return val;
-  }
 }
