@@ -26,12 +26,13 @@ export class AuthenticationService {
   ) {}
 
 
-  public signIn(email : string, password : string) : Promise<string> {
-    const route = environment.urlApi + `auth/singin`
-    return lastValueFrom(this._httpClient.post<string>(route, { email, password })).then((access_token)=> {
-      this._localStorageService.setItem(this._keyAccessToken, access_token)
+  public signIn(email : string, password : string) : Promise<{access_token: string}> {
+    const route = environment.urlApi + `auth/signin`
+    return lastValueFrom(this._httpClient.post<{access_token: string}>(route, { email, password })).then((res)=> {
+      console.log(res.access_token)
+      this._localStorageService.setItem(this._keyAccessToken, res.access_token)
       this.redirectionConnexion()
-      return access_token
+      return res
     })
   }
 
@@ -47,7 +48,7 @@ export class AuthenticationService {
 
   public isAuthenticated() : boolean {
     if (!this._access_token) {
-      this._access_token = localStorage.getItem(this._keyAccessToken)
+      this._access_token =  this._localStorageService.getItem(this._keyAccessToken)
     }
 
     return this._access_token ? true : false

@@ -10,11 +10,11 @@
               </h1>
               <form class="flex flex-col gap-4" [formGroup]="form">
                   <app-input label="Email" formControlName="email" [required]="true"></app-input>
-                  <app-input label="Mot de passe" formControlName="password" [required]="true"></app-input>
+                  <app-input label="Mot de passe" formControlName="password" type="password" [required]="true"></app-input>
                   <app-input label="Prénom" formControlName="firstName" [required]="true"></app-input>
                   <app-input label="Nom" formControlName="lastName" [required]="true"></app-input>
                   <div class="flex justify-center">
-                    <app-button (click)="signUp()">Se connecter</app-button>
+                    <app-button (click)="signUp()">S'inscrire</app-button>
                   </div>
                   <p class="text-sm font-light text-gray-500 dark:text-gray-400">
                       Vous avez déjà un compte ? <a routerLink="/public/login" class="font-medium text-primary-600 hover:underline dark:text-primary-500">Se connecter</a>

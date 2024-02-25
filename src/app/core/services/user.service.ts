@@ -19,7 +19,7 @@ export class UserServcice {
       return Promise.resolve(this._currentUser)
     }
 
-    const route = environment.urlApi + 'auth/user'
+    const route = environment.urlApi + 'user/current'
 
 
     return lastValueFrom(this._httpClient.get<User>(route)).then(user => {
